@@ -8,8 +8,7 @@ date: "2023-10-19"
 
 
 ## High Performance Computing Cluster (HPCC)
-Two ways to work with the HPCC: interactive sessions and job submission. Both need to be done using [singularity and containers](Containerizing.html). You might want to set up the hpc environment with user specific requirements to allow some flexibility in interactive sessions for development and testing. ["Some more information here](https://www.synapse.org/#!Synapse:syn52576156) 
-
+Two ways to work with the HPCC: interactive sessions and job submission. 
 #### Other useful references:
 
 - [CCHMC HPCC talk @ sharepoint ](to allow some flexibility in interactive sessions for development and testing.)
