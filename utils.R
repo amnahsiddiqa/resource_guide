@@ -1,3 +1,5 @@
+setwd("/Users/amnahsiddiqa/Documents/Git/resource_guide")
+
 # rmarkdown::render("index.Rmd", output_dir = "docs")
 # rmarkdown::render("Acquiring_and_sharing_data.Rmd", output_dir = "docs")
 # rmarkdown::render("Containerizing.Rmd", output_dir = "docs")

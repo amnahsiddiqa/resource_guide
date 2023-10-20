@@ -1598,15 +1598,15 @@ border-radius: 0px;
 
 <div id="high-performance-computing-cluster-hpcc" class="section level2">
 <h2>High Performance Computing Cluster (HPCC)</h2>
-<p>Two ways to work with the HPCC: interactive sessions and job
-submission.</p>
-<div id="other-useful-references" class="section level4">
-<h4>Other useful references:</h4>
+<p>CCHMC <a href="https://bmi.cchmc.org/resources/clusters/computational-cluster">HPCC</a>
+employs LSF resource manager and scheduler.</p>
+<div id="some-useful-references" class="section level4">
+<h4>Some useful references:</h4>
 <ul>
 <li><p><a href="to%20allow%20some%20flexibility%20in%20interactive%20sessions%20for%20development%20and%20testing.">CCHMC
 HPCC talk @ sharepoint</a></p></li>
 <li><p>Bioinformatics and R Users Group (BUG and RUG). You can reach
-<code>bug-announce@mailman.cchmc.org</code> to get invited for the
+<code>bug-announce@mailman.cchmc.org</code> to get invitation for the
 mailing list.</p></li>
 <li><p><a href="https://hpc-carpentry.github.io/hpc-intro/">Introduction
 to HPC from the HPC Carpentry</a></p></li>
@@ -1618,20 +1618,21 @@ Center SC workshop</a></p></li>
 <div id="get-vpn-setup" class="section level2">
 <h2>Get VPN setup</h2>
 <ul>
-<li>Call IT @ 64100 depart to get you <code>anyconnect</code>
-downloaded.</li>
+<li>Call IT @ 64100 depart to get yourself <code>anyconnect</code>
+downloaded and setup.</li>
 </ul>
 </div>
 <div id="getting-acquainted-with-your-hpcc-environment" class="section level2">
 <h2>Getting acquainted with your HPCC environment</h2>
-<p>If you are connected to VPN, log into HPCC from your terminal</p>
-<pre class="bash"><code>ssh username@bmiclusterp.chmcres.cchmc.org
+<p>If you are connected to VPN, log into HPCC from your terminal
+using:</p>
+<pre class="bash"><code>$ ssh username@bmiclusterp.chmcres.cchmc.org
 #example
-ssh sid1df@bmiclusterp.chmcres.cchmc.org</code></pre>
+$ ssh sid1df@bmiclusterp.chmcres.cchmc.org</code></pre>
 <p>Otherwise</p>
-<pre class="bash"><code>ssh username@research.cchmc.org
+<pre class="bash"><code>$ ssh username@research.cchmc.org
 #example
-sid1df@research.cchmc.org
+$ ssh sid1df@research.cchmc.org
 </code></pre>
 <p>Lab work space from root is @ <code>./data/HaganLab</code> and
 scratch is @ <code>./scratch/yourusername</code></p>
@@ -1644,43 +1645,48 @@ Desktop
 [sid1df@bmiclusterp2 sid1df]$ </code></pre>
 <p>Check available modules and load them as per your requirement
 using:</p>
-<pre class="bash"><code>[sid1df@bmiclusterp2 /]$ module avail
+<pre class="bash"><code>#Checking available modules
+[sid1df@bmiclusterp2 /]$ module avail
 #Loading appropriate modules
 [sid1df@bmiclusterp2 /]$ module load nextflow
 [sid1df@bmiclusterp2 /]$ module load singularity/3.7.0
 </code></pre>
 <div id="handling-batch-jobs-on-hpcc" class="section level3">
 <h3>Handling batch jobs on HPCC</h3>
+<p>Two ways to work with the HPCC: through interactive sessions and
+batch job submission. Use scratch space for computing and submit batch
+jobs as follows:</p>
 <pre class="bash"><code>#submit
-bsub &lt;runscript.sh (make sure to include &lt; followed immediately by filename)
+$ bsub &lt;runscript.sh (make sure to include &lt; followed immediately by filename)
 #check the status of current jobs 
-bjobs
-# kill specific jon 
-bkill jobid 
+$ bjobs
+# kill specific job 
+$ bkill jobid 
 # kill all jobs 
-bkill 0 
+$ bkill 0 
 </code></pre>
 </div>
 <div id="reference-genomefile-locations-not-all-there-may-need-to-download" class="section level3">
 <h3>Reference genome/file locations (not all there, may need to
 download)</h3>
-<p>Supporting databases that we use are under
+<p>Supporting databases and some related files that we use are under
 <code>/HaganLab/databases/</code></p>
 </div>
 <div id="transferring-files-to-and-from-hpc" class="section level3">
 <h3>Transferring files to and from HPC</h3>
 <ul>
 <li>Trailing slash on sending side transfers only contents of the
-directory, without slash it transfers directory itself and contents</li>
+directory, without slash it transfers directory itself and contents:
+<code>rsync -rvtP local/files/location/ yourusername@bmiclusterp.chmcres.cchmc.org:/scratch/yourusername/HPC/location</code></li>
 </ul>
-<pre class="bash"><code>rsync -rvtP local/files/location/ hagjl2@bmiclusterp.chmcres.cchmc.org:/scratch/hagjl2/HPC/location
-# Example 
-rsync -rvtP /Users/tlhagan/Downloads/Genes hagjl2@bmiclusterp.chmcres.cchmc.org:/scratch/hagjl2/igenomes/Macaca_mulatta/Ensembl/Mmul_1/Annotation/Genes
-#Run this from your local terminal 
-#look at the order as well for to and from
-#Example moving files from cluster to local 
-(base) ➜  Documents rsync -rvtP /Users/amnahsiddiqa/Documents/CCHMC_Projects/Kiana_Pasare/01.RawDatacopy2 sid1df@bmiclusterp.chmcres.cchmc.org:/data/HaganLab/projects_data/0002_prj_bcapko_pasare#Example moving file from local to cluster 
-(base) ➜  Documents rsync -rvtP  sid1df@bmiclusterp.chmcres.cchmc.org:/data/HaganLab/irene_dc/samplesheet.csv /Users/amnahsiddiqa/Documents/CCHMC_Projects/Kiana_Pasare/</code></pre>
+<pre class="bash"><code>
+# Usage: Run these command from your local terminal.
+# Example: Copying files from the cluster to your local machine
+$ rsync -rvtP  sid1df@bmiclusterp.chmcres.cchmc.org:/data/HaganLab/irene_dc/samplesheet.csv /Users/amnahsiddiqa/Documents/CCHMC_Projects/Kiana_Pasare/
+
+# Command for copying a file from your local machine to the remote server:
+$ rsync -rvtP  /Users/amnahsiddiqa/Documents/CCHMC_Projects/Kiana_Pasare/nfcore_RNAseq_prj0002.sh sid1df@bmiclusterp.chmcres.cchmc.org:/scratch/sid1df
+</code></pre>
 <ul>
 <li>Filezilla Instructions: use
 <code>bmiclusterp2.chmcres.cchmc.org</code> as target and
@@ -1688,22 +1694,31 @@ rsync -rvtP /Users/tlhagan/Downloads/Genes hagjl2@bmiclusterp.chmcres.cchmc.org:
 username, password)</li>
 </ul>
 </div>
+<div id="working-interactively-on-the-cluster" class="section level3">
+<h3>Working interactively on the cluster</h3>
+<ul>
+<li>in progress</li>
+</ul>
 </div>
-<div id="working-interactively-on-the-cluster" class="section level2">
-<h2>Working interactively on the cluster</h2>
 <div id="from-your-local-terminalrstudio" class="section level3">
 <h3>From your local terminal/RStudio</h3>
 <p><strong>These R packages may also be useful for connecting to a
-remote server from your local environment:</strong> <a href="https://cran.r-project.org/web/packages/ssh/">SSH</a><br />
-<a href="https://cran.r-project.org/web/packages/remoter/">remoter</a><br />
-<a href="https://github.com/cloudyr/rmote">rmote</a><br />
-<a href="https://cran.r-project.org/web/packages/ssh.utils/index.html">ssh-utils</a></p>
+remote server from your local environment:</strong></p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/ssh/">SSH</a><br />
+</li>
+<li><a href="https://cran.r-project.org/web/packages/remoter/">remoter</a><br />
+</li>
+<li><a href="https://github.com/cloudyr/rmote">rmote</a><br />
+</li>
+<li><a href="https://cran.r-project.org/web/packages/ssh.utils/index.html">ssh-utils</a></li>
+</ul>
 </div>
 </div>
 <div id="remote-rstudio" class="section level2">
 <h2>Remote RStudio</h2>
-<p>You can run Rstudio on the hpc and access it from a local browser, as
-explained (In progress)</p>
+<p>You can run Rstudio on the HPCC and access it from a local browser,
+as explained (In progress).</p>
 </div>
 
 
